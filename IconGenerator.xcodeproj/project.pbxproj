@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A830D5D21E33F9EC00E84E8B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A830D5D11E33F9EC00E84E8B /* main.swift */; };
+		A8405E491E353B9F00195472 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8405E481E353B9F00195472 /* main.swift */; };
+		A8405E511E353BCD00195472 /* CommandLineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8405E501E353BCD00195472 /* CommandLineKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A830D5CC1E33F9EC00E84E8B /* CopyFiles */ = {
+		A8405E431E353B9F00195472 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,55 +24,67 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A830D5CE1E33F9EC00E84E8B /* IconGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IconGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
-		A830D5D11E33F9EC00E84E8B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A8405E451E353B9F00195472 /* IconGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IconGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8405E481E353B9F00195472 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A8405E501E353BCD00195472 /* CommandLineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CommandLineKit.framework; path = Carthage/Build/Mac/CommandLineKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A830D5CB1E33F9EC00E84E8B /* Frameworks */ = {
+		A8405E421E353B9F00195472 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8405E511E353BCD00195472 /* CommandLineKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A830D5C51E33F9EC00E84E8B = {
+		A8405E3C1E353B9F00195472 = {
 			isa = PBXGroup;
 			children = (
-				A830D5D01E33F9EC00E84E8B /* IconGenerator */,
-				A830D5CF1E33F9EC00E84E8B /* Products */,
+				A8405E471E353B9F00195472 /* IconGenerator */,
+				A8405E461E353B9F00195472 /* Products */,
+				A8405E4F1E353BCD00195472 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		A830D5CF1E33F9EC00E84E8B /* Products */ = {
+		A8405E461E353B9F00195472 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A830D5CE1E33F9EC00E84E8B /* IconGenerator */,
+				A8405E451E353B9F00195472 /* IconGenerator */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A830D5D01E33F9EC00E84E8B /* IconGenerator */ = {
+		A8405E471E353B9F00195472 /* IconGenerator */ = {
 			isa = PBXGroup;
 			children = (
-				A830D5D11E33F9EC00E84E8B /* main.swift */,
+				A8405E481E353B9F00195472 /* main.swift */,
 			);
 			path = IconGenerator;
+			sourceTree = "<group>";
+		};
+		A8405E4F1E353BCD00195472 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A8405E501E353BCD00195472 /* CommandLineKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A830D5CD1E33F9EC00E84E8B /* IconGenerator */ = {
+		A8405E441E353B9F00195472 /* IconGenerator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A830D5D51E33F9EC00E84E8B /* Build configuration list for PBXNativeTarget "IconGenerator" */;
+			buildConfigurationList = A8405E4C1E353B9F00195472 /* Build configuration list for PBXNativeTarget "IconGenerator" */;
 			buildPhases = (
-				A830D5CA1E33F9EC00E84E8B /* Sources */,
-				A830D5CB1E33F9EC00E84E8B /* Frameworks */,
-				A830D5CC1E33F9EC00E84E8B /* CopyFiles */,
+				A8405E521E353BD500195472 /* Carthage */,
+				A8405E411E353B9F00195472 /* Sources */,
+				A8405E421E353B9F00195472 /* Frameworks */,
+				A8405E431E353B9F00195472 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -79,55 +92,73 @@
 			);
 			name = IconGenerator;
 			productName = IconGenerator;
-			productReference = A830D5CE1E33F9EC00E84E8B /* IconGenerator */;
+			productReference = A8405E451E353B9F00195472 /* IconGenerator */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A830D5C61E33F9EC00E84E8B /* Project object */ = {
+		A8405E3D1E353B9F00195472 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Aliaksandr Kantsevoi";
 				TargetAttributes = {
-					A830D5CD1E33F9EC00E84E8B = {
+					A8405E441E353B9F00195472 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = A830D5C91E33F9EC00E84E8B /* Build configuration list for PBXProject "IconGenerator" */;
+			buildConfigurationList = A8405E401E353B9F00195472 /* Build configuration list for PBXProject "IconGenerator" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = A830D5C51E33F9EC00E84E8B;
-			productRefGroup = A830D5CF1E33F9EC00E84E8B /* Products */;
+			mainGroup = A8405E3C1E353B9F00195472;
+			productRefGroup = A8405E461E353B9F00195472 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A830D5CD1E33F9EC00E84E8B /* IconGenerator */,
+				A8405E441E353B9F00195472 /* IconGenerator */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A8405E521E353BD500195472 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/CommandLineKit.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		A830D5CA1E33F9EC00E84E8B /* Sources */ = {
+		A8405E411E353B9F00195472 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A830D5D21E33F9EC00E84E8B /* main.swift in Sources */,
+				A8405E491E353B9F00195472 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A830D5D31E33F9EC00E84E8B /* Debug */ = {
+		A8405E4A1E353B9F00195472 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -175,7 +206,7 @@
 			};
 			name = Debug;
 		};
-		A830D5D41E33F9EC00E84E8B /* Release */ = {
+		A8405E4B1E353B9F00195472 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -215,17 +246,25 @@
 			};
 			name = Release;
 		};
-		A830D5D61E33F9EC00E84E8B /* Debug */ = {
+		A8405E4D1E353B9F00195472 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		A830D5D71E33F9EC00E84E8B /* Release */ = {
+		A8405E4E1E353B9F00195472 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -234,24 +273,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A830D5C91E33F9EC00E84E8B /* Build configuration list for PBXProject "IconGenerator" */ = {
+		A8405E401E353B9F00195472 /* Build configuration list for PBXProject "IconGenerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A830D5D31E33F9EC00E84E8B /* Debug */,
-				A830D5D41E33F9EC00E84E8B /* Release */,
+				A8405E4A1E353B9F00195472 /* Debug */,
+				A8405E4B1E353B9F00195472 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A830D5D51E33F9EC00E84E8B /* Build configuration list for PBXNativeTarget "IconGenerator" */ = {
+		A8405E4C1E353B9F00195472 /* Build configuration list for PBXNativeTarget "IconGenerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A830D5D61E33F9EC00E84E8B /* Debug */,
-				A830D5D71E33F9EC00E84E8B /* Release */,
+				A8405E4D1E353B9F00195472 /* Debug */,
+				A8405E4E1E353B9F00195472 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A830D5C61E33F9EC00E84E8B /* Project object */;
+	rootObject = A8405E3D1E353B9F00195472 /* Project object */;
 }
