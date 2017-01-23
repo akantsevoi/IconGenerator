@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2122134A1E3622F20017B8D8 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212213491E3622F20017B8D8 /* Functions.swift */; };
 		A8405E491E353B9F00195472 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8405E481E353B9F00195472 /* main.swift */; };
-		A8405E511E353BCD00195472 /* CommandLineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8405E501E353BCD00195472 /* CommandLineKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A8405E431E353B9F00195472 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
+			dstPath = "";
 			dstSubfolderSpec = 0;
 			files = (
 			);
@@ -24,9 +24,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		212213491E3622F20017B8D8 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		A8405E451E353B9F00195472 /* IconGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IconGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8405E481E353B9F00195472 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		A8405E501E353BCD00195472 /* CommandLineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CommandLineKit.framework; path = Carthage/Build/Mac/CommandLineKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +34,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8405E511E353BCD00195472 /* CommandLineKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				A8405E481E353B9F00195472 /* main.swift */,
+				212213491E3622F20017B8D8 /* Functions.swift */,
 			);
 			path = IconGenerator;
 			sourceTree = "<group>";
@@ -69,7 +69,6 @@
 		A8405E4F1E353BCD00195472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A8405E501E353BCD00195472 /* CommandLineKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -81,7 +80,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8405E4C1E353B9F00195472 /* Build configuration list for PBXNativeTarget "IconGenerator" */;
 			buildPhases = (
-				A8405E521E353BD500195472 /* Carthage */,
 				A8405E411E353B9F00195472 /* Sources */,
 				A8405E421E353B9F00195472 /* Frameworks */,
 				A8405E431E353B9F00195472 /* CopyFiles */,
@@ -128,30 +126,13 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		A8405E521E353BD500195472 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/Mac/CommandLineKit.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		A8405E411E353B9F00195472 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A8405E491E353B9F00195472 /* main.swift in Sources */,
+				2122134A1E3622F20017B8D8 /* Functions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +234,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -265,6 +247,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

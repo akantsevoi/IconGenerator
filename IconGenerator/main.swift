@@ -7,37 +7,69 @@
 //
 
 import Foundation
-import CommandLineKit
+
+let colorShortKey = "-c"
+let versionShortKey = "-v"
+let buildShortKey = "-b"
+let outputPathShortKey = "-p"
+
+let helpShortKey = "-h"
+let helpFullKey = "help"
+
+let defaultColor = "#000000"
+
+let tab = "    "
+
+let lineArguments = CommandLine.arguments
+
+func printHelp(for key: String, description: String) {
+    print("\(tab)\(key):")
+    print("\(tab)\(tab)\(description)")
+}
+
+func printHelpInfo () {
+    print("usage IconGenerator [options]:")
+    printHelp(for: colorShortKey,
+              description: "Background color for generated icon. Default - \(defaultColor)")
+    printHelp(for: versionShortKey,
+              description: "Version of your project")
+    printHelp(for: buildShortKey,
+              description: "Build number of your project")
+    printHelp(for: outputPathShortKey,
+              description: "Output path for Icon.")
+}
+
+guard lineArguments.count > 1 else {
+    printHelpInfo()
+    exit(EX_OK)
+}
+
+guard lineArguments[1] != helpFullKey,
+    lineArguments[1] != helpShortKey else {
+    printHelpInfo()
+    exit(EX_OK)
+}
+
+var arguments = [String:String]()
 
 
-let cli = CommandLineKit.CommandLine()
+for i in stride(from:1, to:lineArguments.count, by: 2) {
+    arguments[lineArguments[i]] = lineArguments[i+1]
+}
 
-let versionNumber = StringOption(shortFlag: "v",
-                                 longFlag: "versionNumber",
-                                 required: true,
-                                 helpMessage: "String version of project for generate icon")
-
-let buildNumber = StringOption(shortFlag: "b",
-                               longFlag: "buildNumber",
-                               required: true,
-                               helpMessage: "String build number of project for generate icon")
-
-let color = StringOption(shortFlag: "c",
-                         longFlag: "color",
-                         required: false,
-                         helpMessage: "Background color for icon. Hexadecimal format. #000000 - default")
-
-cli.addOptions(versionNumber,
-               buildNumber,
-               color)
-
-do {
-    try cli.parse()
-} catch {
-    cli.printUsage(error)
+guard let version = arguments[versionShortKey] else {
+    print("\(versionShortKey) is recquired param")
     exit(EX_USAGE)
 }
 
-print("v: \(versionNumber.value)")
-print("b: \(buildNumber.value)")
-print("c: \(color.value)")
+guard let build = arguments[buildShortKey] else {
+    print("\(buildShortKey) is recquired param")
+    exit(EX_USAGE)
+}
+
+guard let output = arguments[outputPathShortKey] else {
+    print("\(outputPathShortKey) is recquired param")
+    exit(EX_USAGE)
+}
+
+let color = arguments[colorShortKey] ?? defaultColor
