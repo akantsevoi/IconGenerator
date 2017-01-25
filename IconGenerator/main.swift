@@ -7,18 +7,30 @@
 //
 
 import Foundation
+import Cocoa
 
 let colorShortKey = "-c"
 let versionShortKey = "-v"
 let buildShortKey = "-b"
 let outputPathShortKey = "-p"
+let hashShortKey = "-g"
 
 let helpShortKey = "-h"
 let helpFullKey = "help"
 
-let defaultColor = "#000000"
+let defaultColor = "000000"
 
 let tab = "    "
+
+
+let versionDescription = "Version of your project"
+let buildNumberDescription = "Build number of your project"
+let colorDescription = "Background color for generated icon. \n\(tab)\(tab)Hexadecimal format without '#'. Example: -c 000000 \n\(tab)\(tab)Default - \(defaultColor)"
+let hashDescription = "Hash of git commit"
+let outputPathDescription = "Output path for Icon."
+
+let outputIconName = "BaseIcon.png"
+
 
 let lineArguments = CommandLine.arguments
 
@@ -30,13 +42,15 @@ func printHelp(for key: String, description: String) {
 func printHelpInfo () {
     print("usage IconGenerator [options]:")
     printHelp(for: colorShortKey,
-              description: "Background color for generated icon. Default - \(defaultColor)")
+              description: colorDescription)
     printHelp(for: versionShortKey,
-              description: "Version of your project")
+              description: versionDescription)
     printHelp(for: buildShortKey,
-              description: "Build number of your project")
+              description: buildNumberDescription)
+    printHelp(for: hashShortKey,
+              description: hashDescription)
     printHelp(for: outputPathShortKey,
-              description: "Output path for Icon.")
+              description: outputPathDescription)
 }
 
 guard lineArguments.count > 1 else {
@@ -67,9 +81,39 @@ guard let build = arguments[buildShortKey] else {
     exit(EX_USAGE)
 }
 
-guard let output = arguments[outputPathShortKey] else {
-    print("\(outputPathShortKey) is recquired param")
+var hashInput = arguments[hashShortKey]
+if let hash = hashInput {
+    hashInput = "#: " + hash
+}
+
+let output = arguments[outputPathShortKey] ?? "./"
+let color = "#" + (arguments[colorShortKey] ?? defaultColor)
+
+
+
+
+guard let inputColor = getColorFromString(hex: color) else {
+    print("Incorrect color value: \(color)")
     exit(EX_USAGE)
 }
 
-let color = arguments[colorShortKey] ?? defaultColor
+let opposit = contrastColor(to: inputColor)
+
+let image = generateImage(color: inputColor,
+                          size: CGSize.init(width: 180, height: 180))
+
+let withText = writeText(onImage: image,
+                         textColor: opposit,
+                         versionNumber: "v: \(version)",
+                         bundleNumber: "b: \(build)",
+                         hashCommit: hashInput)
+
+let ref = withText.cgImage(forProposedRect: nil, context: nil, hints: nil)
+let newRep = NSBitmapImageRep.init(cgImage: ref!)
+newRep.size = withText.size
+let pngData = newRep.representation(using: NSPNGFileType, properties: [String : Any]())
+
+var url = URL.init(fileURLWithPath: output)
+url.appendPathComponent(outputIconName)
+
+try pngData?.write(to:url)
