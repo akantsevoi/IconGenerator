@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2122134A1E3622F20017B8D8 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212213491E3622F20017B8D8 /* Functions.swift */; };
 		A8405E491E353B9F00195472 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8405E481E353B9F00195472 /* main.swift */; };
+		A84316AE1E3D149C00AD9F19 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84316AD1E3D149C00AD9F19 /* Generator.swift */; };
+		A84316B01E3D14E500AD9F19 /* IconCutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84316AF1E3D14E500AD9F19 /* IconCutter.swift */; };
+		A84316B21E3D198800AD9F19 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84316B11E3D198800AD9F19 /* Base.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +30,9 @@
 		212213491E3622F20017B8D8 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		A8405E451E353B9F00195472 /* IconGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IconGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8405E481E353B9F00195472 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A84316AD1E3D149C00AD9F19 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
+		A84316AF1E3D14E500AD9F19 /* IconCutter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCutter.swift; sourceTree = "<group>"; };
+		A84316B11E3D198800AD9F19 /* Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,9 @@
 			children = (
 				A8405E481E353B9F00195472 /* main.swift */,
 				212213491E3622F20017B8D8 /* Functions.swift */,
+				A84316AD1E3D149C00AD9F19 /* Generator.swift */,
+				A84316AF1E3D14E500AD9F19 /* IconCutter.swift */,
+				A84316B11E3D198800AD9F19 /* Base.swift */,
 			);
 			path = IconGenerator;
 			sourceTree = "<group>";
@@ -131,8 +140,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A84316AE1E3D149C00AD9F19 /* Generator.swift in Sources */,
 				A8405E491E353B9F00195472 /* main.swift in Sources */,
+				A84316B21E3D198800AD9F19 /* Base.swift in Sources */,
 				2122134A1E3622F20017B8D8 /* Functions.swift in Sources */,
+				A84316B01E3D14E500AD9F19 /* IconCutter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
