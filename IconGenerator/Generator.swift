@@ -26,26 +26,43 @@ let outputPathDescription = "Output path for Icon."
 let outputIconName = "BaseIcon.png"
 
 struct Generator: Submodule {
-    func process(_ arguments: [String : String]) {
+    func process(_ arguments: [String]) {
         
+        if let firstArgument = arguments.first,
+            firstArgument == helpShortKey ||
+                firstArgument == helpFullKey {
+            self.printHelp()
+            exit(EX_OK)
+        }
         
-        guard let version = arguments[versionShortKey] else {
+        if arguments.count % 2 == 1 {
+            self.printHelp()
+            exit(EX_USAGE)
+        }
+        
+        var utiliteArguments = [String: String]()
+        
+        for i in stride(from: 0, to: arguments.count, by: 2) {
+            utiliteArguments[arguments[i]] = arguments[i + 1]
+        }
+        
+        guard let version = utiliteArguments[versionShortKey] else {
             print("\(versionShortKey) is recquired param")
             exit(EX_USAGE)
         }
         
-        guard let build = arguments[buildShortKey] else {
+        guard let build = utiliteArguments[buildShortKey] else {
             print("\(buildShortKey) is recquired param")
             exit(EX_USAGE)
         }
         
-        var hashInput = arguments[hashShortKey]
+        var hashInput = utiliteArguments[hashShortKey]
         if let hash = hashInput {
             hashInput = "#: " + hash
         }
         
-        let output = arguments[outputPathShortKey] ?? "./"
-        let color = "#" + (arguments[colorShortKey] ?? defaultColor)
+        let output = utiliteArguments[outputPathShortKey] ?? "./"
+        let color = "#" + (utiliteArguments[colorShortKey] ?? defaultColor)
         
         
         
@@ -82,23 +99,22 @@ struct Generator: Submodule {
         }
     }
     
-    private func helpString(for key: String, description: String) -> String {
-        return "\(tab)\(key):\n\(tab)\(tab)\(description)"
+    private func printPartHelpString(for key: String, description: String) {
+        print("\(tab)\(key):")
+        print("\(tab)\(tab)\(description)")
     }
     
-    func help() -> String {
-        var help = ""
-        help += "usage IconGenerator generator [options]:"
-        help += helpString(for: colorShortKey,
+    func printHelp() {
+        print("usage IconGenerator generator [options]:")
+        printPartHelpString(for: colorShortKey,
                   description: colorDescription)
-        help += helpString(for: versionShortKey,
+        printPartHelpString(for: versionShortKey,
                   description: versionDescription)
-        help += helpString(for: buildShortKey,
+        printPartHelpString(for: buildShortKey,
                   description: buildNumberDescription)
-        help += helpString(for: hashShortKey,
+        printPartHelpString(for: hashShortKey,
                   description: hashDescription)
-        help += helpString(for: outputPathShortKey,
+        printPartHelpString(for: outputPathShortKey,
                   description: outputPathDescription)
-        return help
     }
 }

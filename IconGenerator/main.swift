@@ -9,10 +9,6 @@
 import Foundation
 
 
-
-let helpShortKey = "-h"
-let helpFullKey = "help"
-
 enum Programs:String {
     case generator
     case iconCutter
@@ -51,11 +47,15 @@ guard lineArguments.count % 2 == 0 else {
     exit(EX_OK)
 }
 
-var arguments = [String:String]()
+let arguments = Array(lineArguments.dropFirst(2))
 
-for i in stride(from:2, to:lineArguments.count, by: 2) {
-    arguments[lineArguments[i]] = lineArguments[i+1]
+switch program {
+    case .generator:
+        let gen = Generator()
+        gen.process(arguments)
+    case .iconCutter:
+        print("Unfinished")
 }
 
-let gen = Generator()
+
 

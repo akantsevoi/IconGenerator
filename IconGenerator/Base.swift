@@ -10,8 +10,9 @@ import Foundation
 
 let tab = "    "
 
+let helpShortKey = "-h"
+let helpFullKey = "help"
 
 protocol Submodule {
-    func process(_ arguments: [String:String])
-    func help() -> String
+    func process(_ arguments: [String])
 }
