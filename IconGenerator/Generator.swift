@@ -17,6 +17,8 @@ let hashShortKey = "-g"
 
 let defaultColor = "000000"
 
+let sizeIcon = 512
+
 let versionDescription = "Version of your project"
 let buildNumberDescription = "Build number of your project"
 let colorDescription = "Background color for generated icon. \n\(tab)\(tab)Hexadecimal format without '#'. Example: -c 000000 \n\(tab)\(tab)Default - \(defaultColor)"
@@ -28,33 +30,14 @@ let outputIconName = "BaseIcon.png"
 struct Generator: Submodule {
     func process(_ arguments: [String]) {
         
-        if let firstArgument = arguments.first,
-            firstArgument == helpShortKey ||
-                firstArgument == helpFullKey {
-            self.printHelp()
-            exit(EX_OK)
-        }
+        self.baseCheckInput(arguments)
         
-        if arguments.count % 2 == 1 {
-            self.printHelp()
-            exit(EX_USAGE)
-        }
+        let utiliteArguments = self.mapInputArguments(arguments)
         
-        var utiliteArguments = [String: String]()
-        
-        for i in stride(from: 0, to: arguments.count, by: 2) {
-            utiliteArguments[arguments[i]] = arguments[i + 1]
-        }
-        
-        guard let version = utiliteArguments[versionShortKey] else {
-            print("\(versionShortKey) is recquired param")
-            exit(EX_USAGE)
-        }
-        
-        guard let build = utiliteArguments[buildShortKey] else {
-            print("\(buildShortKey) is recquired param")
-            exit(EX_USAGE)
-        }
+        let version = self.checkRequiredInput(for: versionShortKey,
+                                              in: utiliteArguments)
+        let build = self.checkRequiredInput(for: buildShortKey,
+                                            in: utiliteArguments)
         
         var hashInput = utiliteArguments[hashShortKey]
         if let hash = hashInput {
@@ -64,18 +47,16 @@ struct Generator: Submodule {
         let output = utiliteArguments[outputPathShortKey] ?? "./"
         let color = "#" + (utiliteArguments[colorShortKey] ?? defaultColor)
         
-        
-        
-        
         guard let inputColor = getColorFromString(hex: color) else {
             print("Incorrect color value: \(color)")
             exit(EX_USAGE)
         }
         
+        
         let opposit = contrastColor(to: inputColor)
         
         let image = generateImage(color: inputColor,
-                                  size: CGSize.init(width: 180, height: 180))
+                                  size: CGSize.init(width: sizeIcon, height: sizeIcon))
         
         let withText = writeText(onImage: image,
                                  textColor: opposit,
@@ -99,22 +80,17 @@ struct Generator: Submodule {
         }
     }
     
-    private func printPartHelpString(for key: String, description: String) {
-        print("\(tab)\(key):")
-        print("\(tab)\(tab)\(description)")
-    }
-    
     func printHelp() {
         print("usage IconGenerator generator [options]:")
-        printPartHelpString(for: colorShortKey,
+        printKeyDescription(for: colorShortKey,
                   description: colorDescription)
-        printPartHelpString(for: versionShortKey,
+        printKeyDescription(for: versionShortKey,
                   description: versionDescription)
-        printPartHelpString(for: buildShortKey,
+        printKeyDescription(for: buildShortKey,
                   description: buildNumberDescription)
-        printPartHelpString(for: hashShortKey,
+        printKeyDescription(for: hashShortKey,
                   description: hashDescription)
-        printPartHelpString(for: outputPathShortKey,
+        printKeyDescription(for: outputPathShortKey,
                   description: outputPathDescription)
     }
 }

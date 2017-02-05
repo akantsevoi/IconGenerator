@@ -67,19 +67,19 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-b"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "3.41.3"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "-v"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "1.2.34"
+            argument = "1.2.41"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-b"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "34.1.32"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -87,8 +87,28 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "34511F"
+            argument = "9485FF"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-g"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "d9943e82ff64979527e2cd8653e954ba769b4658"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "iconCutter"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-p"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "./BaseIcon.png"
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

@@ -12,17 +12,19 @@
 		A84316AE1E3D149C00AD9F19 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84316AD1E3D149C00AD9F19 /* Generator.swift */; };
 		A84316B01E3D14E500AD9F19 /* IconCutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84316AF1E3D14E500AD9F19 /* IconCutter.swift */; };
 		A84316B21E3D198800AD9F19 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84316B11E3D198800AD9F19 /* Base.swift */; };
+		A86E8C0C1E47479400F80BC4 /* template.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = A86E8C091E47236500F80BC4 /* template.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A8405E431E353B9F00195472 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
-			dstSubfolderSpec = 0;
+			dstSubfolderSpec = 16;
 			files = (
+				A86E8C0C1E47479400F80BC4 /* template.json in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -33,6 +35,7 @@
 		A84316AD1E3D149C00AD9F19 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		A84316AF1E3D14E500AD9F19 /* IconCutter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCutter.swift; sourceTree = "<group>"; };
 		A84316B11E3D198800AD9F19 /* Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		A86E8C091E47236500F80BC4 /* template.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = template.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,7 @@
 				A84316AD1E3D149C00AD9F19 /* Generator.swift */,
 				A84316AF1E3D14E500AD9F19 /* IconCutter.swift */,
 				A84316B11E3D198800AD9F19 /* Base.swift */,
+				A86E8C091E47236500F80BC4 /* template.json */,
 			);
 			path = IconGenerator;
 			sourceTree = "<group>";

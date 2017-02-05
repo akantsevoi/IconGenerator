@@ -41,12 +41,6 @@ guard let program = Programs.init(rawValue: lineArguments[1]) else {
     exit(EX_OK)
 }
 
-guard lineArguments.count % 2 == 0 else {
-    print("Input error")
-    printHelpInfo()
-    exit(EX_OK)
-}
-
 let arguments = Array(lineArguments.dropFirst(2))
 
 switch program {
@@ -54,7 +48,8 @@ switch program {
         let gen = Generator()
         gen.process(arguments)
     case .iconCutter:
-        print("Unfinished")
+        let cutter = IconCutter()
+        cutter.process(arguments)
 }
 
 

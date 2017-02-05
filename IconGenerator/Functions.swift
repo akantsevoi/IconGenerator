@@ -9,6 +9,7 @@
 import Foundation
 import Cocoa
 
+fileprivate let fontProportion: CGFloat = 6
 
 public func generateImage (color: NSColor,
                            size: NSSize = NSSize(width: 1, height: 1)) -> NSImage {
@@ -54,12 +55,16 @@ public func writeText(onImage image: NSImage,
                       bundleNumber:String,
                       hashCommit:String?) -> NSImage {
     
+    let sizeImage = image.size
+    let height = sizeImage.height
+    let fontS = fontSize(with: sizeImage)
+    
     image.drawText(versionNumber,
-                   atPoint: CGPoint.init(x: 0, y: 180-40),
+                   atPoint: CGPoint.init(x: 0, y: height - fontS),
                    textColor: textColor)
     
     image.drawText(bundleNumber,
-                   atPoint: CGPoint.init(x: 0, y: 70),
+                   atPoint: CGPoint.init(x: 0, y: height / 2 - fontS),
                    textColor: textColor)
     
     if let hash = hashCommit {
@@ -94,12 +99,15 @@ func getColorFromString(hex hexColorString : String) -> NSColor?
     return result
 }
 
+fileprivate func fontSize(with size: NSSize) -> CGFloat {
+    return size.height / fontProportion
+}
+
 extension NSImage {
     public func drawText(_ text: String,
                          atPoint point: NSPoint,
                          textColor: NSColor = NSColor.white){
-        
-        let textFont = NSFont(name: "Helvetica Bold", size: 30)!
+        let textFont = NSFont(name: "Helvetica Bold", size: fontSize(with: self.size))!
         
         let textFontAttributes = [
             NSFontAttributeName: textFont,
