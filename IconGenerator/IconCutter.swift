@@ -11,8 +11,39 @@ import Cocoa
 
 let baseIconPathKey = "-p"
 let configPathKey = "-c"
+let outputPathKey = "-o"
 
+let resultXcasset = "TestIcon.xcassets"
+let resultIconSet = "AppIcon.appiconset"
+let defaultTemplateName = "template.json"
+let defaultOutput = "./"
 
+fileprivate struct IconItem {
+    let size: CGFloat
+    let idiom: String
+    let scale: Int
+    let role: String?
+    let subtype: String?
+    var filename: String?
+    
+    init(json dict: [String: String]) {
+        var newSize = 0.0
+        if let sizeString = dict["size"] {
+            newSize = Double(String(sizeString.characters.split{$0 == "x"}.first!))!
+        }
+        size = CGFloat(newSize)
+        idiom = dict["idiom"]!
+        
+        var newScale = 1
+        if let strinScale = dict["scale"] {
+            newScale = Int(String(strinScale.characters.first!))!
+        }
+        scale = newScale
+
+        role = dict["role"]
+        subtype = dict["subtype"]
+    }
+}
 
 struct IconCutter: Submodule {
     func process(_ arguments: [String]) {
@@ -25,7 +56,7 @@ struct IconCutter: Submodule {
         
         
         guard let configPath = utiliteArguments[configPathKey] ??
-            Bundle.main.path(forResource: "template", ofType: "json") else {
+            Bundle.main.path(forResource: defaultTemplateName, ofType: nil) else {
                 print("Incorrect template url")
                 exit(EX_USAGE)
         }
@@ -34,6 +65,8 @@ struct IconCutter: Submodule {
             print("Cannot open image")
             exit(EX_USAGE)
         }
+        
+        let outputPath = utiliteArguments[outputPathKey] ?? defaultOutput
         
         let jsonURL = URL.init(fileURLWithPath: configPath)
         
@@ -47,13 +80,48 @@ struct IconCutter: Submodule {
             exit(EX_USAGE)
         }
         
-        guard let configValues = json as? [String: Any] else {
+        guard let configValues = json as? [[String: String]] else {
             print("Error parse config file")
             exit(EX_USAGE)
         }
         
-        print("\(configValues)\n\n")
-        print("\(type(of: configValues))")
+        var parsedItems = [IconItem]()
+        
+        for configItem in configValues {
+            parsedItems.append(IconItem.init(json: configItem))
+        }
+        
+        let relativeURL = URL.init(fileURLWithPath: outputPath)
+        let folderPath = resultXcasset + "/" + resultIconSet
+        let destinationFolderURL = URL.init(fileURLWithPath: folderPath, isDirectory: true, relativeTo: relativeURL)
+        do {
+            try FileManager.default.createDirectory(at: destinationFolderURL,
+                                            withIntermediateDirectories: true,
+                                            attributes: nil)
+        } catch {
+            print("ERRRORRRRR!")
+        }
+        
+        for var parsedItem in parsedItems {
+            let size = parsedItem.size * CGFloat(parsedItem.scale)
+
+            var additionalInfo = ""
+
+            if let subtype = parsedItem.subtype {
+                additionalInfo += "-\(subtype)"
+            }
+
+            if let role = parsedItem.role {
+                additionalInfo += "-\(role)"
+            }
+
+            let imageName = "\(parsedItem.idiom)-\(parsedItem.scale)-\(parsedItem.size)\(additionalInfo).png"
+            let imageURL = URL.init(fileURLWithPath: imageName, relativeTo: destinationFolderURL)
+            
+            image.saveImage(withSize: CGSize(width: size, height: size), at: imageURL)
+
+            parsedItem.filename = imageName
+        }
     }
     
     func printHelp() {

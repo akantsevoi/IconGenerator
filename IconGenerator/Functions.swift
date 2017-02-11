@@ -123,4 +123,14 @@ extension NSImage {
         
         self.unlockFocus()
     }
+    
+    public func saveImage(withSize size: CGSize, at path: URL) {
+        guard let cgref = self.cgImage(forProposedRect: nil, context: nil, hints: nil) else {return}
+        let bitmap = NSBitmapImageRep(cgImage: cgref)
+        bitmap.size = size
+        guard let pngData = bitmap.representation(using: NSBitmapImageFileType.PNG, properties: [:]) else {return}
+        do {
+            try pngData.write(to: path)
+        } catch {}
+    }
 }
