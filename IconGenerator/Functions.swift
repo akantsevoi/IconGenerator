@@ -124,13 +124,29 @@ extension NSImage {
         self.unlockFocus()
     }
     
-    public func saveImage(withSize size: CGSize, at path: URL) {
-        guard let cgref = self.cgImage(forProposedRect: nil, context: nil, hints: nil) else {return}
-        let bitmap = NSBitmapImageRep(cgImage: cgref)
-        bitmap.size = size
-        guard let pngData = bitmap.representation(using: NSBitmapImageFileType.PNG, properties: [:]) else {return}
+    public func savePNGImage(at path: URL) throws {
+        let ref = self.cgImage(forProposedRect: nil, context: nil, hints: nil)
+        let newRep = NSBitmapImageRep.init(cgImage: ref!)
+        newRep.size = self.size
+        let pngData = newRep.representation(using: NSPNGFileType, properties: [:])
+        
+        try pngData?.write(to: path)
+    }
+    
+    public func saveImage(withSize size: NSSize, at path: URL) {
+        
+        let originalSize = self.size
+        
+        let resizedImage = NSImage.init(size: size)
+        resizedImage.lockFocus()
+        self.draw(in: NSRect.init(x: 0, y: 0, width: size.width, height: size.height),
+                  from: NSRect(x: 0, y: 0, width: originalSize.width, height: originalSize.height),
+                  operation: .sourceOver,
+                  fraction: 1.0)
+        resizedImage.unlockFocus()
+        
         do {
-            try pngData.write(to: path)
+            try resizedImage.savePNGImage(at: path)
         } catch {}
     }
 }

@@ -64,16 +64,11 @@ struct Generator: Submodule {
             bundleNumber: "b: \(build)",
             hashCommit: hashInput)
         
-        let ref = withText.cgImage(forProposedRect: nil, context: nil, hints: nil)
-        let newRep = NSBitmapImageRep.init(cgImage: ref!)
-        newRep.size = withText.size
-        let pngData = newRep.representation(using: NSPNGFileType, properties: [String : Any]())
-        
         var url = URL.init(fileURLWithPath: output)
         url.appendPathComponent(outputIconName)
         
         do {
-            try pngData?.write(to:url)
+            try withText.savePNGImage(at: url)
         } catch let error {
             print("\(error)")
             exit(EX_USAGE)
