@@ -99,7 +99,8 @@ struct IconCutter: Submodule {
                                             withIntermediateDirectories: true,
                                             attributes: nil)
         } catch {
-            print("ERRRORRRRR!")
+            print("Error create folder")
+            exit(EX_USAGE)
         }
         
         for var parsedItem in parsedItems {
@@ -122,6 +123,8 @@ struct IconCutter: Submodule {
 
             parsedItem.filename = imageName
         }
+        
+        
     }
     
     func printHelp() {
