@@ -9,23 +9,23 @@
 import Foundation
 import Cocoa
 
-let colorShortKey = "-c"
-let versionShortKey = "-v"
-let buildShortKey = "-b"
-let outputPathShortKey = "-p"
-let hashShortKey = "-g"
+fileprivate let colorShortKey = "-c"
+fileprivate let versionShortKey = "-v"
+fileprivate let buildShortKey = "-b"
+fileprivate let outputPathShortKey = "-p"
+fileprivate let hashShortKey = "-g"
 
-let defaultColor = "000000"
+fileprivate let defaultColor = "000000"
 
-let sizeIcon = 512
+fileprivate let sizeIcon = 512
 
-let versionDescription = "Version of your project"
-let buildNumberDescription = "Build number of your project"
-let colorDescription = "Background color for generated icon. \n\(tab)\(tab)Hexadecimal format without '#'. Example: -c 000000 \n\(tab)\(tab)Default - \(defaultColor)"
-let hashDescription = "Hash of git commit"
-let outputPathDescription = "Output path for Icon."
+fileprivate let versionDescription = "Version of your project"
+fileprivate let buildNumberDescription = "Build number of your project"
+fileprivate let colorDescription = "Background color for generated icon. \n\(tab)\(tab)Hexadecimal format without '#'. Example: -c 000000 \n\(tab)\(tab)Default - \(defaultColor)"
+fileprivate let hashDescription = "Hash of git commit"
+fileprivate let outputPathDescription = "Output path for Icon."
 
-let outputIconName = "BaseIcon.png"
+fileprivate let outputIconName = "BaseIcon.png"
 
 struct Generator: Submodule {
     func process(_ arguments: [String]) {

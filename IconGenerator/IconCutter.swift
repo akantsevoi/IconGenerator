@@ -9,9 +9,14 @@
 import Foundation
 import Cocoa
 
-let baseIconPathKey = "-p"
-let configPathKey = "-c"
-let outputPathKey = "-o"
+fileprivate let baseIconPathKey = "-p"
+fileprivate let configPathKey = "-c"
+fileprivate let outputPathKey = "-o"
+
+fileprivate let baseIconDescription = "path to original image"
+fileprivate let configPathDescription = "path to custom .json template for generate icons"
+fileprivate let outputPathDescription = "path for output .xcassets"
+
 
 let resultXcasset = "TestIcon.xcassets"
 let resultIconSet = "AppIcon.appiconset"
@@ -123,11 +128,15 @@ struct IconCutter: Submodule {
 
             parsedItem.filename = imageName
         }
-        
-        
     }
     
     func printHelp() {
         print("usage IconGenerator iconCutter [options]:")
+        printKeyDescription(for: baseIconPathKey,
+                            description: baseIconDescription)
+        printKeyDescription(for: configPathKey,
+                            description: configPathDescription)
+        printKeyDescription(for: outputPathKey,
+                            description: outputPathDescription)
     }
 }

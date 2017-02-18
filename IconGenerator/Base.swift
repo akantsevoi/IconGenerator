@@ -31,7 +31,7 @@ extension Submodule {
             exit(EX_OK)
         }
         
-        if arguments.count % 2 == 1 {
+        if arguments.count == 0 || arguments.count % 2 == 1 {
             self.printHelp()
             exit(EX_USAGE)
         }
