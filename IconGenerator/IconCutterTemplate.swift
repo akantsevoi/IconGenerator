@@ -51,7 +51,7 @@ struct IconItem: JSONSerializable {
         representation["size"] = "\(strSize)x\(strSize)"
         representation["idiom"] = idiom
         representation["filename"] = filename
-        representation["scale"] = String(scale)
+        representation["scale"] = String(scale) + "x"
         representation["role"] = role
         representation["subtype"] = subtype
         

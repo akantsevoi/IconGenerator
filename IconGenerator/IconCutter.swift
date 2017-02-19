@@ -91,6 +91,9 @@ struct IconCutter: Submodule {
             exit(EX_USAGE)
         }
         
+        var outputJSONObject = [String: AnyObject]()
+        var itemObjects = [AnyObject]()
+        
         for var parsedItem in parsedItems {
             if idioms.contains(parsedItem.idiom) {
                 let size = parsedItem.size * CGFloat(parsedItem.scale)
@@ -111,7 +114,32 @@ struct IconCutter: Submodule {
                 image.saveImage(withSize: CGSize(width: size, height: size), at: imageURL)
 
                 parsedItem.filename = imageName
+                
+                itemObjects.append(parsedItem.JSONRepresentation)
             }
+        }
+        
+        outputJSONObject["images"] = itemObjects as AnyObject?
+        let info: [String: String] = [ "version":"1", "author" : "xcode"]
+        outputJSONObject["info"] = info as AnyObject?
+        
+        do {
+            let data = try JSONSerialization.data(withJSONObject: outputJSONObject,
+                                                  options: .prettyPrinted)
+            if let jsonURL = URL.init(string: "Contents.json", relativeTo: destinationFolderURL) {
+                do {
+                    try data.write(to: jsonURL)
+                } catch {
+                    print("Error write Contents.json file")
+                    exit(EX_USAGE)
+                }
+            } else {
+                print("Error create Contents.json url")
+                exit(EX_USAGE)
+            }
+        } catch {
+            print("Error configure Contents.json file")
+            exit(EX_USAGE)
         }
     }
     
