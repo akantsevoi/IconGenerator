@@ -9,20 +9,20 @@
 import Foundation
 import Cocoa
 
-fileprivate let colorShortKey = "-c"
-fileprivate let versionShortKey = "-v"
-fileprivate let buildShortKey = "-b"
-fileprivate let outputPathShortKey = "-p"
-fileprivate let hashShortKey = "-g"
+fileprivate let colorShortKey = "-color"
+fileprivate let topShortKey = "-top"
+fileprivate let middleShortKey = "-mid"
+fileprivate let outputPathShortKey = "-output"
+fileprivate let bottomShortKey = "-bot"
 
 fileprivate let defaultColor = "000000"
 
 fileprivate let sizeIcon = 512
 
-fileprivate let versionDescription = "Version of your project"
-fileprivate let buildNumberDescription = "Build number of your project"
+fileprivate let topDescription = "String for top area"
+fileprivate let middleDescription = "String for middle"
 fileprivate let colorDescription = "Background color for generated icon. \n\(tab)\(tab)Hexadecimal format without '#'. Example: -c 000000 \n\(tab)\(tab)Default - \(defaultColor)"
-fileprivate let hashDescription = "Hash of git commit"
+fileprivate let bottomDescription = "String for bottom area"
 fileprivate let outputPathDescription = "Output path for Icon."
 
 fileprivate let outputIconName = "BaseIcon.png"
@@ -34,15 +34,12 @@ struct Generator: Submodule {
         
         let utiliteArguments = self.mapInputArguments(arguments)
         
-        let version = self.checkRequiredInput(for: versionShortKey,
+        let version = self.checkRequiredInput(for: topShortKey,
                                               in: utiliteArguments)
-        let build = self.checkRequiredInput(for: buildShortKey,
+        let build = self.checkRequiredInput(for: middleShortKey,
                                             in: utiliteArguments)
         
-        var hashInput = utiliteArguments[hashShortKey]
-        if let hash = hashInput {
-            hashInput = "#: " + hash
-        }
+        let hashInput = utiliteArguments[bottomShortKey]
         
         let output = utiliteArguments[outputPathShortKey] ?? "./"
         let color = "#" + (utiliteArguments[colorShortKey] ?? defaultColor)
@@ -60,15 +57,24 @@ struct Generator: Submodule {
         
         let withText = writeText(onImage: image,
                                  textColor: opposit,
-                                 versionNumber: "v: \(version)",
-            bundleNumber: "b: \(build)",
-            hashCommit: hashInput)
+                                 versionNumber: version,
+                                 bundleNumber: build,
+                                 hashCommit: hashInput)
         
-        var url = URL.init(fileURLWithPath: output)
-        url.appendPathComponent(outputIconName)
+        var destinationFolderUrl = URL.init(fileURLWithPath: output, isDirectory: true)
+        do {
+            try FileManager.default.createDirectory(at: destinationFolderUrl,
+                                                    withIntermediateDirectories: true,
+                                                    attributes: nil)
+        } catch {
+            print("Error create folder")
+            exit(EX_USAGE)
+        }
+        
+        destinationFolderUrl.appendPathComponent(outputIconName)
         
         do {
-            try withText.savePNGImage(at: url)
+            try withText.savePNGImage(at: destinationFolderUrl)
         } catch let error {
             print("\(error)")
             exit(EX_USAGE)
@@ -79,12 +85,12 @@ struct Generator: Submodule {
         print("usage IconGenerator generator [options]:")
         printKeyDescription(for: colorShortKey,
                   description: colorDescription)
-        printKeyDescription(for: versionShortKey,
-                  description: versionDescription)
-        printKeyDescription(for: buildShortKey,
-                  description: buildNumberDescription)
-        printKeyDescription(for: hashShortKey,
-                  description: hashDescription)
+        printKeyDescription(for: topShortKey,
+                  description: topDescription)
+        printKeyDescription(for: middleShortKey,
+                  description: middleDescription)
+        printKeyDescription(for: bottomShortKey,
+                  description: bottomDescription)
         printKeyDescription(for: outputPathShortKey,
                   description: outputPathDescription)
     }

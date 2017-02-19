@@ -107,7 +107,7 @@ extension NSImage {
     public func drawText(_ text: String,
                          atPoint point: NSPoint,
                          textColor: NSColor = NSColor.white){
-        let textFont = NSFont(name: "Helvetica Bold", size: fontSize(with: self.size))!
+        let textFont = NSFont.systemFont(ofSize: fontSize(with: self.size))
         
         let textFontAttributes = [
             NSFontAttributeName: textFont,

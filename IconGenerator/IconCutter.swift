@@ -9,9 +9,9 @@
 import Foundation
 import Cocoa
 
-fileprivate let baseIconPathKey = "-p"
-fileprivate let configPathKey = "-c"
-fileprivate let outputPathKey = "-o"
+fileprivate let baseIconPathKey = "-base"
+fileprivate let configPathKey = "-config"
+fileprivate let outputPathKey = "-output"
 fileprivate let idiomsKey = "-idioms"
 
 fileprivate let baseIconDescription = "path to original image"
