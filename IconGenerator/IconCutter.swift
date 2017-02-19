@@ -23,33 +23,6 @@ let resultIconSet = "AppIcon.appiconset"
 let defaultTemplateName = "template.json"
 let defaultOutput = "./"
 
-fileprivate struct IconItem {
-    let size: CGFloat
-    let idiom: String
-    let scale: Int
-    let role: String?
-    let subtype: String?
-    var filename: String?
-    
-    init(json dict: [String: String]) {
-        var newSize = 0.0
-        if let sizeString = dict["size"] {
-            newSize = Double(String(sizeString.characters.split{$0 == "x"}.first!))!
-        }
-        size = CGFloat(newSize)
-        idiom = dict["idiom"]!
-        
-        var newScale = 1
-        if let strinScale = dict["scale"] {
-            newScale = Int(String(strinScale.characters.first!))!
-        }
-        scale = newScale
-
-        role = dict["role"]
-        subtype = dict["subtype"]
-    }
-}
-
 struct IconCutter: Submodule {
     func process(_ arguments: [String]) {
         self.baseCheckInput(arguments)
@@ -59,13 +32,6 @@ struct IconCutter: Submodule {
         let baseIconUrl = self.checkRequiredInput(for: baseIconPathKey,
                                                   in: utiliteArguments)
         
-        
-        guard let configPath = utiliteArguments[configPathKey] ??
-            Bundle.main.path(forResource: defaultTemplateName, ofType: nil) else {
-                print("Incorrect template url")
-                exit(EX_USAGE)
-        }
-        
         guard let image = NSImage.init(contentsOfFile: baseIconUrl) else {
             print("Cannot open image")
             exit(EX_USAGE)
@@ -73,28 +39,35 @@ struct IconCutter: Submodule {
         
         let outputPath = utiliteArguments[outputPathKey] ?? defaultOutput
         
-        let jsonURL = URL.init(fileURLWithPath: configPath)
-        
-        guard let configData = try? Data.init(contentsOf: jsonURL) else {
-            print("Error read config file")
-            exit(EX_USAGE)
-        }
-        
-        guard let json = try? JSONSerialization.jsonObject(with: configData, options: []) else {
-            print("Error deserialization config file")
-            exit(EX_USAGE)
-        }
-        
-        guard let configValues = json as? [[String: String]] else {
-            print("Error parse config file")
-            exit(EX_USAGE)
-        }
-        
         var parsedItems = [IconItem]()
         
-        for configItem in configValues {
-            parsedItems.append(IconItem.init(json: configItem))
+        if let configPath = utiliteArguments[configPathKey] {
+            let jsonURL = URL.init(fileURLWithPath: configPath)
+            
+            guard let configData = try? Data.init(contentsOf: jsonURL) else {
+                print("Error read config file")
+                exit(EX_USAGE)
+            }
+            
+            guard let json = try? JSONSerialization.jsonObject(with: configData, options: []) else {
+                print("Error deserialization config file")
+                exit(EX_USAGE)
+            }
+            
+            guard let configValues = json as? [[String: String]] else {
+                print("Error parse config file")
+                exit(EX_USAGE)
+            }
+            
+            for configItem in configValues {
+                parsedItems.append(IconItem.init(json: configItem))
+            }
+        } else {
+            parsedItems = templateItems
         }
+        
+        
+        
         
         let relativeURL = URL.init(fileURLWithPath: outputPath)
         let folderPath = resultXcasset + "/" + resultIconSet
