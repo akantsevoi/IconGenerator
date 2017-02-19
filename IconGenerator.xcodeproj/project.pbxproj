@@ -12,6 +12,7 @@
 		A84316AE1E3D149C00AD9F19 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84316AD1E3D149C00AD9F19 /* Generator.swift */; };
 		A84316B01E3D14E500AD9F19 /* IconCutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84316AF1E3D14E500AD9F19 /* IconCutter.swift */; };
 		A84316B21E3D198800AD9F19 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84316B11E3D198800AD9F19 /* Base.swift */; };
+		A863FA2B1E596412007CC11A /* JSONRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863FA2A1E596412007CC11A /* JSONRepresentable.swift */; };
 		A86E8C0C1E47479400F80BC4 /* template.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = A86E8C091E47236500F80BC4 /* template.json */; };
 		A887CFC91E582B2D00AC3537 /* IconCutterTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A887CFC81E582B2D00AC3537 /* IconCutterTemplate.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		A84316AD1E3D149C00AD9F19 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		A84316AF1E3D14E500AD9F19 /* IconCutter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCutter.swift; sourceTree = "<group>"; };
 		A84316B11E3D198800AD9F19 /* Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		A863FA2A1E596412007CC11A /* JSONRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONRepresentable.swift; sourceTree = "<group>"; };
 		A86E8C091E47236500F80BC4 /* template.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = template.json; sourceTree = "<group>"; };
 		A887CFC81E582B2D00AC3537 /* IconCutterTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCutterTemplate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +80,7 @@
 				A887CFC81E582B2D00AC3537 /* IconCutterTemplate.swift */,
 				A84316B11E3D198800AD9F19 /* Base.swift */,
 				A86E8C091E47236500F80BC4 /* template.json */,
+				A863FA2A1E596412007CC11A /* JSONRepresentable.swift */,
 			);
 			path = IconGenerator;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 				A84316AE1E3D149C00AD9F19 /* Generator.swift in Sources */,
 				A887CFC91E582B2D00AC3537 /* IconCutterTemplate.swift in Sources */,
 				A8405E491E353B9F00195472 /* main.swift in Sources */,
+				A863FA2B1E596412007CC11A /* JSONRepresentable.swift in Sources */,
 				A84316B21E3D198800AD9F19 /* Base.swift in Sources */,
 				2122134A1E3622F20017B8D8 /* Functions.swift in Sources */,
 				A84316B01E3D14E500AD9F19 /* IconCutter.swift in Sources */,

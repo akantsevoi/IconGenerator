@@ -8,8 +8,7 @@
 
 import Foundation
 
-
-struct IconItem {
+struct IconItem: JSONSerializable {
     let size: CGFloat
     let idiom: String
     let scale: Int
@@ -42,6 +41,31 @@ struct IconItem {
         
         role = dict["role"]
         subtype = dict["subtype"]
+    }
+    
+    var JSONRepresentation: AnyObject {
+        var representation = [String: String]()
+        
+        let strSize = sizeToString(size)
+        
+        representation["size"] = "\(strSize)x\(strSize)"
+        representation["idiom"] = idiom
+        representation["filename"] = filename
+        representation["scale"] = String(scale)
+        representation["role"] = role
+        representation["subtype"] = subtype
+        
+        return representation as AnyObject
+    }
+    
+    private func sizeToString(_ value: CGFloat) -> String {
+        let (_, fract) = modf(Double(value))
+        
+        if fract > DBL_EPSILON {
+            return String(format:"%.1f", value)
+        } else {
+            return String(format:"%.0f", value)
+        }
     }
 }
 
