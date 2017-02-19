@@ -12,16 +12,21 @@ import Cocoa
 fileprivate let baseIconPathKey = "-p"
 fileprivate let configPathKey = "-c"
 fileprivate let outputPathKey = "-o"
+fileprivate let idiomsKey = "-idioms"
 
 fileprivate let baseIconDescription = "path to original image"
 fileprivate let configPathDescription = "path to custom .json template for generate icons"
 fileprivate let outputPathDescription = "path for output .xcassets"
+fileprivate let idiomsDescription = "Idioms of cutted images. Format: mac-iphone-watch-ipad in random order"
+
+fileprivate let defaultIdioms = "mac-iphone-watch-ipad"
+fileprivate let idiomsSeparator = "-"
 
 
-let resultXcasset = "TestIcon.xcassets"
-let resultIconSet = "AppIcon.appiconset"
-let defaultTemplateName = "template.json"
-let defaultOutput = "./"
+fileprivate let resultXcasset = "TestIcon.xcassets"
+fileprivate let resultIconSet = "AppIcon.appiconset"
+fileprivate let defaultTemplateName = "template.json"
+fileprivate let defaultOutput = "./"
 
 struct IconCutter: Submodule {
     func process(_ arguments: [String]) {
@@ -37,7 +42,7 @@ struct IconCutter: Submodule {
             exit(EX_USAGE)
         }
         
-        let outputPath = utiliteArguments[outputPathKey] ?? defaultOutput
+        
         
         var parsedItems = [IconItem]()
         
@@ -66,12 +71,17 @@ struct IconCutter: Submodule {
             parsedItems = templateItems
         }
         
+        let idiomString = utiliteArguments[idiomsKey] ?? defaultIdioms
+        
+        let idioms = idiomString.components(separatedBy: idiomsSeparator)
+        
+        
+        let outputPath = utiliteArguments[outputPathKey] ?? defaultOutput
         
         
         
-        let relativeURL = URL.init(fileURLWithPath: outputPath)
-        let folderPath = resultXcasset + "/" + resultIconSet
-        let destinationFolderURL = URL.init(fileURLWithPath: folderPath, isDirectory: true, relativeTo: relativeURL)
+        let folderPath = outputPath + "/" + resultXcasset + "/" + resultIconSet
+        let destinationFolderURL = URL.init(fileURLWithPath: folderPath, isDirectory: true)
         do {
             try FileManager.default.createDirectory(at: destinationFolderURL,
                                             withIntermediateDirectories: true,
@@ -82,24 +92,26 @@ struct IconCutter: Submodule {
         }
         
         for var parsedItem in parsedItems {
-            let size = parsedItem.size * CGFloat(parsedItem.scale)
+            if idioms.contains(parsedItem.idiom) {
+                let size = parsedItem.size * CGFloat(parsedItem.scale)
 
-            var additionalInfo = ""
+                var additionalInfo = ""
 
-            if let subtype = parsedItem.subtype {
-                additionalInfo += "-\(subtype)"
+                if let subtype = parsedItem.subtype {
+                    additionalInfo += "-\(subtype)"
+                }
+
+                if let role = parsedItem.role {
+                    additionalInfo += "-\(role)"
+                }
+
+                let imageName = "\(parsedItem.idiom)-\(parsedItem.scale)-\(parsedItem.size)\(additionalInfo).png"
+                let imageURL = URL.init(fileURLWithPath: imageName, relativeTo: destinationFolderURL)
+                
+                image.saveImage(withSize: CGSize(width: size, height: size), at: imageURL)
+
+                parsedItem.filename = imageName
             }
-
-            if let role = parsedItem.role {
-                additionalInfo += "-\(role)"
-            }
-
-            let imageName = "\(parsedItem.idiom)-\(parsedItem.scale)-\(parsedItem.size)\(additionalInfo).png"
-            let imageURL = URL.init(fileURLWithPath: imageName, relativeTo: destinationFolderURL)
-            
-            image.saveImage(withSize: CGSize(width: size, height: size), at: imageURL)
-
-            parsedItem.filename = imageName
         }
     }
     
@@ -111,5 +123,7 @@ struct IconCutter: Submodule {
                             description: configPathDescription)
         printKeyDescription(for: outputPathKey,
                             description: outputPathDescription)
+        printKeyDescription(for: idiomsKey,
+                            description: idiomsDescription)
     }
 }

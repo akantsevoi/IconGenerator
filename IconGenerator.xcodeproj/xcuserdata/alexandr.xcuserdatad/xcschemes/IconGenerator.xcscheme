@@ -107,7 +107,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "./BaseIcon.png"
+            argument = "BaseIcon.png"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -115,8 +115,16 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "./"
+            argument = "./testFolder//"
             isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-idioms"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "iphone-ipad"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
