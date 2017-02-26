@@ -22,3 +22,23 @@ Small tool for generate test icons and cut icons.
 ```
 
 <img src="https://github.com/powerscin/IconGenerator/blob/master/Archive/images/BaseIcon-first-example.png" alt="Set*" width="160.0" height="160.0"/>
+
+### Cutter
+
+```
+./IconGenerator iconCutter -base BaseIcon.png -idioms mac-iphone-ipad
+
+    -base:
+        path to original image
+    -config:
+        path to custom .json template for generate icons
+    -output:
+        path for output .xcassets
+    -idioms:
+        Idioms of cutted images. Format: mac-iphone-watch-ipad in random order
+```
+<img src="https://github.com/powerscin/IconGenerator/blob/master/Archive/images/IconCutter-second-example.png" alt="Set*" width="440.0" height="480.0"/>
+
+Ready for use in Xcode
+
+<img src="https://github.com/powerscin/IconGenerator/blob/master/Archive/images/IconCutter-third-example.png" alt="Set*" width="840.0" height="614.0"/>
