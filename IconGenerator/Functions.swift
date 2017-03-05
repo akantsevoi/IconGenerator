@@ -61,13 +61,13 @@ public func writeText(onImage image: NSImage,
     
     if let topText = topText {
         image.drawText(topText,
-                       atPoint: CGPoint.init(x: 0, y: height - fontS),
+                       atPoint: CGPoint.init(x: 0, y: height * 2 / 3),
                        textColor: textColor)
     }
     
     if let midText = midText {
         image.drawText(midText,
-                       atPoint: CGPoint.init(x: 0, y: height / 2 - fontS),
+                       atPoint: CGPoint.init(x: 0, y: height / 3),
                        textColor: textColor)
     }
     
@@ -113,9 +113,13 @@ extension NSImage {
                          textColor: NSColor = NSColor.white){
         let textFont = NSFont.systemFont(ofSize: fontSize(with: self.size))
         
+        let styleCenter = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+        styleCenter.alignment = NSCenterTextAlignment
+        
         let textFontAttributes = [
             NSFontAttributeName: textFont,
             NSForegroundColorAttributeName: textColor,
+            NSParagraphStyleAttributeName: styleCenter
             ] as [String : Any]
         
         
