@@ -57,23 +57,22 @@ public func writeText(onImage image: NSImage,
     
     let sizeImage = image.size
     let height = sizeImage.height
-    let fontS = fontSize(with: sizeImage)
     
     if let topText = topText {
         image.drawText(topText,
-                       atPoint: CGPoint.init(x: 0, y: height * 2 / 3),
+                       in: NSRect.init(x: 0, y: height * 2 / 3, width: sizeImage.width, height: height / 3),
                        textColor: textColor)
     }
     
     if let midText = midText {
         image.drawText(midText,
-                       atPoint: CGPoint.init(x: 0, y: height / 3),
+                       in: NSRect.init(x: 0, y: height / 4, width: sizeImage.width, height: height / 4),
                        textColor: textColor)
     }
     
     if let bottomText = bottomText {
         image.drawText(bottomText,
-                       atPoint: CGPoint.init(x: 0, y: 0),
+                       in: NSRect.init(x: 0, y: 0, width: sizeImage.width, height: height / 4),
                        textColor: textColor)
     }
     
@@ -103,15 +102,11 @@ func getColorFromString(hex hexColorString : String) -> NSColor?
     return result
 }
 
-fileprivate func fontSize(with size: NSSize) -> CGFloat {
-    return size.height / fontProportion
-}
-
 extension NSImage {
     public func drawText(_ text: String,
-                         atPoint point: NSPoint,
-                         textColor: NSColor = NSColor.white){
-        let textFont = NSFont.systemFont(ofSize: fontSize(with: self.size))
+                         in rect: NSRect,
+                         textColor: NSColor = NSColor.white) {
+        let textFont = NSFont.systemFont(ofSize: rect.size.height)
         
         let styleCenter = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
         styleCenter.alignment = NSCenterTextAlignment
@@ -125,11 +120,6 @@ extension NSImage {
         
         self.lockFocus()
         let str:NSString = NSString.init(string: text)
-        
-        let rect = NSRect.init(x: point.x,
-                               y: point.y,
-                               width: self.size.width,
-                               height: self.size.height / 3)
         str.draw(in: rect, withAttributes: textFontAttributes)
         
         self.unlockFocus()
