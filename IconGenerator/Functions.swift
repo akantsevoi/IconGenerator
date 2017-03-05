@@ -51,24 +51,28 @@ public func contrastColor(to color: NSColor) -> NSColor {
 
 public func writeText(onImage image: NSImage,
                       textColor: NSColor = NSColor.white,
-                      versionNumber:String,
-                      bundleNumber:String,
-                      hashCommit:String?) -> NSImage {
+                      topText:String?,
+                      midText:String?,
+                      bottomText:String?) -> NSImage {
     
     let sizeImage = image.size
     let height = sizeImage.height
     let fontS = fontSize(with: sizeImage)
     
-    image.drawText(versionNumber,
-                   atPoint: CGPoint.init(x: 0, y: height - fontS),
-                   textColor: textColor)
+    if let topText = topText {
+        image.drawText(topText,
+                       atPoint: CGPoint.init(x: 0, y: height - fontS),
+                       textColor: textColor)
+    }
     
-    image.drawText(bundleNumber,
-                   atPoint: CGPoint.init(x: 0, y: height / 2 - fontS),
-                   textColor: textColor)
+    if let midText = midText {
+        image.drawText(midText,
+                       atPoint: CGPoint.init(x: 0, y: height / 2 - fontS),
+                       textColor: textColor)
+    }
     
-    if let hash = hashCommit {
-        image.drawText(hash,
+    if let bottomText = bottomText {
+        image.drawText(bottomText,
                        atPoint: CGPoint.init(x: 0, y: 0),
                        textColor: textColor)
     }
@@ -117,9 +121,12 @@ extension NSImage {
         
         self.lockFocus()
         let str:NSString = NSString.init(string: text)
-        str.draw(at: point,
-                 withAttributes: textFontAttributes)
         
+        let rect = NSRect.init(x: point.x,
+                               y: point.y,
+                               width: self.size.width,
+                               height: self.size.height / 3)
+        str.draw(in: rect, withAttributes: textFontAttributes)
         
         self.unlockFocus()
     }

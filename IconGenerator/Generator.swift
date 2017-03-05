@@ -34,12 +34,12 @@ struct Generator: Submodule {
         
         let utiliteArguments = self.mapInputArguments(arguments)
         
-        let version = self.checkRequiredInput(for: topShortKey,
+        let topText = self.checkRequiredInput(for: topShortKey,
                                               in: utiliteArguments)
-        let build = self.checkRequiredInput(for: middleShortKey,
+        let midText = self.checkRequiredInput(for: middleShortKey,
                                             in: utiliteArguments)
         
-        let hashInput = utiliteArguments[bottomShortKey]
+        let botText = utiliteArguments[bottomShortKey]
         
         let output = utiliteArguments[outputPathShortKey] ?? "./"
         let color = "#" + (utiliteArguments[colorShortKey] ?? defaultColor)
@@ -57,9 +57,9 @@ struct Generator: Submodule {
         
         let withText = writeText(onImage: image,
                                  textColor: opposit,
-                                 versionNumber: version,
-                                 bundleNumber: build,
-                                 hashCommit: hashInput)
+                                 topText: topText,
+                                 midText: midText,
+                                 bottomText: botText)
         
         var destinationFolderUrl = URL.init(fileURLWithPath: output, isDirectory: true)
         do {

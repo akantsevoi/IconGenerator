@@ -64,51 +64,51 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "generator"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-v"
-            isEnabled = "NO">
+            argument = "-top"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "1.2.41"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-b"
-            isEnabled = "NO">
+            argument = "-mid"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "34.1.32"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-c"
-            isEnabled = "NO">
+            argument = "-color"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "9485FF"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-g"
-            isEnabled = "NO">
+            argument = "-bot"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "d9943e82ff64979527e2cd8653e954ba769b4658"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "iconCutter"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-p"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "BaseIcon.png"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-o"
@@ -120,11 +120,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-idioms"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "iphone-ipad"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
