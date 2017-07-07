@@ -63,27 +63,39 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-v"
+            argument = "generator"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "1.2.34"
+            argument = "-color"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-b"
+            argument = "D490BA"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "1.23.3"
+            argument = "-top"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-c"
+            argument = "1.23.3LongLongLong"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "FFFFFF"
+            argument = "-mid"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "midTextLongText"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-bot"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "bottomText"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

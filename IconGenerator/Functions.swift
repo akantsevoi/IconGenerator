@@ -60,19 +60,19 @@ public func writeText(onImage image: NSImage,
     
     if let topText = topText {
         image.drawText(topText,
-                       in: NSRect.init(x: 0, y: height * 2 / 3, width: sizeImage.width, height: height / 3),
-                       textColor: textColor)
+                       in: NSRect.init(x: 0, y: height * 2 / 3 - 20, width: sizeImage.width, height: height / 3),
+                       textColor: textColor, halfSized: true)
     }
     
     if let midText = midText {
         image.drawText(midText,
-                       in: NSRect.init(x: 0, y: height / 4, width: sizeImage.width, height: height / 4),
+                       in: NSRect.init(x: 0, y: height / 4 + 20, width: sizeImage.width, height: height / 6),
                        textColor: textColor)
     }
     
     if let bottomText = bottomText {
         image.drawText(bottomText,
-                       in: NSRect.init(x: 0, y: 0, width: sizeImage.width, height: height / 4),
+                       in: NSRect.init(x: 0, y: 10, width: sizeImage.width, height: height / 6),
                        textColor: textColor)
     }
     
@@ -105,8 +105,10 @@ func getColorFromString(hex hexColorString : String) -> NSColor?
 extension NSImage {
     public func drawText(_ text: String,
                          in rect: NSRect,
-                         textColor: NSColor = NSColor.white) {
-        let textFont = NSFont.systemFont(ofSize: rect.size.height)
+                         textColor: NSColor = NSColor.white,
+                         halfSized: Bool = false) {
+        let fontSize = halfSized ? (rect.size.height / 2) - 30 : rect.size.height
+        let textFont = NSFont.systemFont(ofSize: fontSize)
         
         let styleCenter = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
         styleCenter.alignment = NSCenterTextAlignment
