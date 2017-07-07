@@ -12,21 +12,21 @@ import Cocoa
 fileprivate let baseIconPathKey = "-base"
 fileprivate let configPathKey = "-config"
 fileprivate let outputPathKey = "-output"
+fileprivate let outputSetName = "-setName"
 fileprivate let idiomsKey = "-idioms"
 
 fileprivate let baseIconDescription = "path to original image"
 fileprivate let configPathDescription = "path to custom .json template for generate icons"
-fileprivate let outputPathDescription = "path for output .xcassets"
+fileprivate let outputPathDescription = "path for folder with .appiconset folder"
 fileprivate let idiomsDescription = "Idioms of cutted images. Format: mac-iphone-watch-ipad in random order"
+fileprivate let outputSetNameDescription = ".appiconset folder name"
 
 fileprivate let defaultIdioms = "mac-iphone-watch-ipad"
 fileprivate let idiomsSeparator = "-"
 
-
-fileprivate let resultXcasset = "TestIcon.xcassets"
-fileprivate let resultIconSet = "AppIcon.appiconset"
+fileprivate let defaultSetName = "AppIcon.appiconset"
 fileprivate let defaultTemplateName = "template.json"
-fileprivate let defaultOutput = "./"
+fileprivate let defaultOutput = "./TestIcon.xcassets"
 
 struct IconCutter: Submodule {
     func process(_ arguments: [String]) {
@@ -74,13 +74,11 @@ struct IconCutter: Submodule {
         let idiomString = utiliteArguments[idiomsKey] ?? defaultIdioms
         
         let idioms = idiomString.components(separatedBy: idiomsSeparator)
-        
-        
+
         let outputPath = utiliteArguments[outputPathKey] ?? defaultOutput
+        let iconAppSetName = utiliteArguments[outputSetName] ?? defaultSetName
         
-        
-        
-        let folderPath = outputPath + "/" + resultXcasset + "/" + resultIconSet
+        let folderPath = outputPath + "/" + iconAppSetName
         let destinationFolderURL = URL.init(fileURLWithPath: folderPath, isDirectory: true)
         do {
             try FileManager.default.createDirectory(at: destinationFolderURL,
@@ -153,5 +151,7 @@ struct IconCutter: Submodule {
                             description: outputPathDescription)
         printKeyDescription(for: idiomsKey,
                             description: idiomsDescription)
+        printKeyDescription(for: outputSetName,
+                            description: outputSetNameDescription)
     }
 }
