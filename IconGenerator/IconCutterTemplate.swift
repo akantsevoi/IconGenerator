@@ -103,5 +103,6 @@ let templateItems = [
     IconItem.init(size: 256, idiom: "mac", scale: 1),
     IconItem.init(size: 256, idiom: "mac", scale: 2),
     IconItem.init(size: 512, idiom: "mac", scale: 1),
-    IconItem.init(size: 512, idiom: "mac", scale: 2)
+    IconItem.init(size: 512, idiom: "mac", scale: 2),
+    IconItem.init(size: 1024, idiom: "ios-marketing", scale: 1)
 ]

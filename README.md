@@ -1,7 +1,7 @@
 # IconGenerator
 Small tool for generate test icons and cut icons.
 
-Latest version: https://github.com/powerscin/IconGenerator/blob/master/Archive/IconGenerator-1.0.0.tgz
+Latest version: https://github.com/powerscin/IconGenerator/blob/master/Archive/IconGenerator-1.0.1.zip
 
 ### Examples
 ### Generator

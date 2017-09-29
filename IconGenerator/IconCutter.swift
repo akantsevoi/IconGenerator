@@ -22,6 +22,7 @@ fileprivate let idiomsDescription = "Idioms of cutted images. Format: mac-iphone
 fileprivate let outputSetNameDescription = ".appiconset folder name"
 
 fileprivate let defaultIdioms = "mac-iphone-watch-ipad"
+fileprivate let defaultMarketingIdiom = "ios-marketing"
 fileprivate let idiomsSeparator = "-"
 
 fileprivate let defaultSetName = "AppIcon.appiconset"
@@ -73,7 +74,7 @@ struct IconCutter: Submodule {
         
         let idiomString = utiliteArguments[idiomsKey] ?? defaultIdioms
         
-        let idioms = idiomString.components(separatedBy: idiomsSeparator)
+        let idioms = idiomString.components(separatedBy: idiomsSeparator) + [defaultMarketingIdiom]
 
         let outputPath = utiliteArguments[outputPathKey] ?? defaultOutput
         let iconAppSetName = utiliteArguments[outputSetName] ?? defaultSetName
@@ -92,7 +93,7 @@ struct IconCutter: Submodule {
         var outputJSONObject = [String: AnyObject]()
         var itemObjects = [AnyObject]()
         
-        for var parsedItem in parsedItems {
+        for var parsedItem in parsedItems.reversed() {
             if idioms.contains(parsedItem.idiom) {
                 let size = parsedItem.size * CGFloat(parsedItem.scale)
 

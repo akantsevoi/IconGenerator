@@ -17,7 +17,7 @@ fileprivate let bottomShortKey = "-bot"
 
 fileprivate let defaultColor = "000000"
 
-fileprivate let sizeIcon = 512
+fileprivate let sizeIcon = 1024
 
 fileprivate let topDescription = "String for top area"
 fileprivate let middleDescription = "String for middle"
