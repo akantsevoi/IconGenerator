@@ -1,7 +1,7 @@
 # IconGenerator
 Small tool for generate test icons and cut icons.
 
-Latest version: https://github.com/powerscin/IconGenerator/blob/master/Archive/IconGenerator-1.0.1.zip
+Latest version: https://github.com/akantsevoi/IconGenerator/blob/master/Archive/IconGenerator-1.0.1.zip
 
 ### Examples
 ### Generator
@@ -23,7 +23,7 @@ Latest version: https://github.com/powerscin/IconGenerator/blob/master/Archive/I
         Output path for Icon.
 ```
 
-<img src="https://github.com/powerscin/IconGenerator/blob/master/Archive/images/BaseIcon-first-example.png" alt="Set*" width="160.0" height="160.0"/>
+<img src="https://github.com/akantsevoi/IconGenerator/blob/master/Archive/images/BaseIcon-first-example.png" alt="Set*" width="160.0" height="160.0"/>
 
 ### Cutter
 
@@ -39,8 +39,8 @@ Latest version: https://github.com/powerscin/IconGenerator/blob/master/Archive/I
     -idioms:
         Idioms of cutted images. Format: mac-iphone-watch-ipad in random order
 ```
-<img src="https://github.com/powerscin/IconGenerator/blob/master/Archive/images/IconCutter-second-example.png" alt="Set*" width="440.0" height="480.0"/>
+<img src="https://github.com/akantsevoi/IconGenerator/blob/master/Archive/images/IconCutter-second-example.png" alt="Set*" width="440.0" height="480.0"/>
 
 Ready for use in Xcode
 
-<img src="https://github.com/powerscin/IconGenerator/blob/master/Archive/images/IconCutter-third-example.png" alt="Set*" width="840.0" height="614.0"/>
+<img src="https://github.com/akantsevoi/IconGenerator/blob/master/Archive/images/IconCutter-third-example.png" alt="Set*" width="840.0" height="614.0"/>
