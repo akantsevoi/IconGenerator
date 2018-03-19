@@ -140,6 +140,10 @@ extension NSImage {
         
         let originalSize = self.size
         
+        // fix size
+        let scale = NSScreen.main()?.backingScaleFactor ?? 1
+        let size = NSSize(width: size.width / scale, height: size.height / scale)
+        
         let resizedImage = NSImage.init(size: size)
         resizedImage.lockFocus()
         self.draw(in: NSRect.init(x: 0, y: 0, width: size.width, height: size.height),
